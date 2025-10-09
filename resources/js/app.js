@@ -1,17 +1,18 @@
 import 'bootstrap';
 import '../sass/app.scss';
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+
 
 import './bootstrap';
 require('./bootstrap');
+
+window.Vue = require('vue').default;
+
 import Vue from 'vue';
-import ExampleComponent from './components/ExampleComponent.vue';
+import NewComponent from './components/NewComponent.vue';
 
 const app = new Vue({
     el: '#app',
-    components: { ExampleComponent },
+    components: {
+        NewComponent,
+    },
 });
