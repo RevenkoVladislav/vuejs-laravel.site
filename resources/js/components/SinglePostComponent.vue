@@ -1,13 +1,13 @@
 <script>
 export default {
-name: "StartComponent"
+    name: "SinglePostComponents"
 }
 </script>
 
 <template>
-    <div>
-        222
-    </div>
+<div>
+    2222
+</div>
 </template>
 
 <style scoped>
