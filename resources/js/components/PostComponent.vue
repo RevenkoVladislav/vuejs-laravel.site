@@ -9,7 +9,7 @@ export default {
 
   data() {
     return {
-      name: 'Vasya',
+      name: 'Вася',
       age: 20,
       boolean: false,
       someNull: null,
@@ -22,19 +22,25 @@ export default {
 
   methods: {
     sayHello() {
-      console.log('Hello')
+      alert('Привет СОНЯ')
     },
     sayHello2() {
       console.log('Hello-2')
     }
-  }
+  },
 
+  computed: {
+    vasyaJob() {
+      return this.name + ' работает в булочной'
+    }
+  }
 
 }
 </script>
 
 <template>
   <div>
+    <div>{{ vasyaJob }}</div>
     <button @click="sayHello">Hello</button>
     <button @click="sayHello2">Hello-2</button>
   </div>
