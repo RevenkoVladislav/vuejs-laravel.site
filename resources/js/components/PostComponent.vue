@@ -7,28 +7,22 @@ export default {
 
   data() {
     return {
-      persons: [
-        {
-          id: 1,
-          name: "Vasya",
-          age: 20,
-          job: 'coach',
-        },
-        {
-          id: 2,
-          name: 'Sonya',
-          age: 10,
-          job: 'pupil',
-        },
-        {
-          id: 3,
-          name: 'Marina',
-          age: 30,
-          job: 'teacher',
-        }
-      ]
+      persons: null
     }
-  }
+  },
+
+  mounted() {
+    this.getPersons();
+  },
+
+  methods: {
+    getPersons() {
+      axios.get('/persons')
+          .then(res => {
+            this.persons = res.data;
+          })
+    }
+  },
 }
 </script>
 
@@ -45,12 +39,12 @@ export default {
         </tr>
         </thead>
         <tbody>
-        <tr v-for="person in persons">
-          <th scope="row">{{ person.id }}</th>
-          <td>{{ person.name }}</td>
-          <td>{{ person.age }}</td>
-          <td>{{ person.job }}</td>
-        </tr>
+                <tr v-for="person in persons">
+                  <th scope="row">{{ person.id }}</th>
+                  <td>{{ person.name }}</td>
+                  <td>{{ person.age }}</td>
+                  <td>{{ person.job }}</td>
+                </tr>
         </tbody>
       </table>
     </div>
