@@ -1,26 +1,18 @@
 <script>
 import SinglePostComponents from "./SinglePostComponent.vue";
+import CreateComponent from "./CreateComponent.vue";
+
 
 export default {
   name: "PostComponent",
-  components: {SinglePostComponents},
+  components: {
+    SinglePostComponents,
+    CreateComponent,
+  },
 
   data() {
     return {
       persons: null
-    }
-  },
-
-  mounted() {
-    this.getPersons();
-  },
-
-  methods: {
-    getPersons() {
-      axios.get('/persons')
-          .then(res => {
-            this.persons = res.data;
-          })
     }
   },
 }
@@ -29,24 +21,25 @@ export default {
 <template>
   <div>
     <div>
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Job</th>
-        </tr>
-        </thead>
-        <tbody>
-                <tr v-for="person in persons">
-                  <th scope="row">{{ person.id }}</th>
-                  <td>{{ person.name }}</td>
-                  <td>{{ person.age }}</td>
-                  <td>{{ person.job }}</td>
-                </tr>
-        </tbody>
-      </table>
+      <CreateComponent />
+<!--      <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th scope="col">id</th>-->
+<!--          <th scope="col">Name</th>-->
+<!--          <th scope="col">Age</th>-->
+<!--          <th scope="col">Job</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--                <tr v-for="person in persons">-->
+<!--                  <th scope="row">{{ person.id }}</th>-->
+<!--                  <td>{{ person.name }}</td>-->
+<!--                  <td>{{ person.age }}</td>-->
+<!--                  <td>{{ person.job }}</td>-->
+<!--                </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
     </div>
   </div>
 </template>
