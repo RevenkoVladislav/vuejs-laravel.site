@@ -6,6 +6,9 @@ export default {
         return {
             people: null,
             editPersonId: null,
+            name: null,
+            age: null,
+            job: null
         }
     },
 
@@ -20,12 +23,23 @@ export default {
             })
         },
 
-        changeEditPersonId(id) {
+        changeEditPersonId(id, name, age, job) {
             this.editPersonId = id;
+            this.name = name;
+            this.age = age;
+            this.job = job;
         },
 
-        isEdit(id){
-          return this.editPersonId === id;
+        isEdit(id) {
+            return this.editPersonId === id;
+        },
+
+        updatePerson(id) {
+            this.editPersonId = null;
+            axios.patch(`/api/people/${id}`, {name: this.name, age: this.age, job: this.job})
+                .then(res => {
+                    this.getPeople();
+                })
         },
     },
 }
@@ -45,26 +59,32 @@ export default {
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr>
+                <tr :class="isEdit(person.id) ? 'd-none' : ''">
                     <th scope="row" class="text-center">{{ person.id }}</th>
                     <td class="text-center">{{ person.name }}</td>
                     <td class="text-center">{{ person.age }}</td>
                     <td class="text-center">{{ person.job }}</td>
-                    <td class="text-center"><a href="#" @click.prevent="changeEditPersonId(person.id)" class="btn btn-success">Edit</a></td>
+                    <td class="text-center">
+                        <a href="#"
+                           @click.prevent="changeEditPersonId(person.id, person.name, person.age, person.job)"
+                           class="btn btn-success">
+                            Edit
+                        </a>
+                    </td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th scope="row" class="text-center">{{ person.id }}</th>
                     <td class="text-center">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" v-model="name">
                     </td>
                     <td class="text-center">
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" v-model="age">
                     </td>
                     <td class="text-center">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" v-model="job">
                     </td>
                     <td class="text-center">
-                        <a href="#" @click.prevent="changeEditPersonId(null)" class="btn btn-success">Update</a>
+                        <a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a>
                     </td>
                 </tr>
             </template>

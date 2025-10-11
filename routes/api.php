@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::prefix('people')->name('people.')->group(function () {
     Route::post('/store', Person\StoreController::class)->name('store');
     Route::get('/', Person\IndexController::class)->name('index');
+    Route::patch('/{person}', Person\UpdateController::class)->name('update');
 });
