@@ -41,6 +41,13 @@ export default {
                     this.getPeople();
                 })
         },
+
+        deletePerson(id) {
+            axios.delete(`/api/people/${id}`)
+                .then(res => {
+                    this.getPeople();
+                })
+        },
     },
 }
 </script>
@@ -55,6 +62,7 @@ export default {
                 <th scope="col" class="text-center">Age</th>
                 <th scope="col" class="text-center">Job</th>
                 <th scope="col" class="text-center">Edit</th>
+                <th scope="col" class="text-center">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -71,6 +79,13 @@ export default {
                             Edit
                         </a>
                     </td>
+                    <td class="text-center">
+                        <a href="#"
+                           @click.prevent="deletePerson(person.id)"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th scope="row" class="text-center">{{ person.id }}</th>
@@ -85,6 +100,13 @@ export default {
                     </td>
                     <td class="text-center">
                         <a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a>
+                    </td>
+                    <td class="text-center">
+                        <a href="#"
+                           @click.prevent="deletePerson(person.id)"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
                     </td>
                 </tr>
             </template>
