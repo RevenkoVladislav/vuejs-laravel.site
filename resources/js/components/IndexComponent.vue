@@ -48,6 +48,10 @@ export default {
                     this.getPeople();
                 })
         },
+
+        indexLog() {
+            console.log('this is index component');
+        }
     },
 }
 </script>

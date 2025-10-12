@@ -10,6 +10,16 @@ export default {
     IndexComponent,
   },
 
+  mounted() {
+
+  },
+
+  methods: {
+    parentLog() {
+      console.log('this is parent component');
+    }
+  },
+
   data() {
     return {
       persons: null
@@ -22,7 +32,7 @@ export default {
   <div>
     <div>
       <CreateComponent />
-      <IndexComponent />
+      <IndexComponent ref="indexComponent"/>
     </div>
   </div>
 </template>
