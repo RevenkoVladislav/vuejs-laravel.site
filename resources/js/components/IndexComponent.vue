@@ -1,6 +1,11 @@
 <script>
+import EditComponent from "./EditComponent.vue";
 export default {
     name: "IndexComponent",
+
+    components: {
+        EditComponent
+    },
 
     data() {
         return {
@@ -25,21 +30,17 @@ export default {
 
         changeEditPersonId(id, name, age, job) {
             this.editPersonId = id;
-            this.name = name;
-            this.age = age;
-            this.job = job;
+            let editName = `edit_${id}`
+            let fullEditName = this.$refs[editName][0];
+            //чтобы дотянуться до свойств объекта используем [0] и т.к динамически формируем то оборачиваем в []
+            //формируем ссылки для edit
+            fullEditName.name = name;
+            fullEditName.age = age;
+            fullEditName.job = job;
         },
 
         isEdit(id) {
             return this.editPersonId === id;
-        },
-
-        updatePerson(id) {
-            this.editPersonId = null;
-            axios.patch(`/api/people/${id}`, {name: this.name, age: this.age, job: this.job})
-                .then(res => {
-                    this.getPeople();
-                })
         },
 
         deletePerson(id) {
@@ -48,10 +49,6 @@ export default {
                     this.getPeople();
                 })
         },
-
-        indexLog() {
-            console.log('this is index component');
-        }
     },
 }
 </script>
@@ -91,28 +88,7 @@ export default {
                         </a>
                     </td>
                 </tr>
-                <tr :class="isEdit(person.id) ? '' : 'd-none'">
-                    <th scope="row" class="text-center">{{ person.id }}</th>
-                    <td class="text-center">
-                        <input type="text" class="form-control" v-model="name">
-                    </td>
-                    <td class="text-center">
-                        <input type="number" class="form-control" v-model="age">
-                    </td>
-                    <td class="text-center">
-                        <input type="text" class="form-control" v-model="job">
-                    </td>
-                    <td class="text-center">
-                        <a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-success">Update</a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#"
-                           @click.prevent="deletePerson(person.id)"
-                           class="btn btn-danger">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
+                <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
             </template>
             </tbody>
         </table>

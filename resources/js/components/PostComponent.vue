@@ -2,12 +2,12 @@
 import CreateComponent from "./CreateComponent.vue";
 import IndexComponent from "./IndexComponent.vue";
 
-
 export default {
   name: "PostComponent",
   components: {
     CreateComponent,
     IndexComponent,
+
   },
 
   mounted() {

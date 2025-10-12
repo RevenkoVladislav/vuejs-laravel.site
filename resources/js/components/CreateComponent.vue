@@ -1,17 +1,23 @@
 <script>
+import SomeComponent from "./SomeComponent.vue";
 export default {
     name: "CreateComponent",
+
+    components: {
+      SomeComponent
+    },
 
     data() {
         return {
             name: null,
             age: null,
             job: null,
+            obj: {
+                color: 'yellow',
+                number: 50,
+                isPublished: false
+            }
         }
-    },
-
-    mounted() {
-        this.$parent.$refs.indexComponent.indexLog()
     },
 
     methods: {
@@ -21,7 +27,7 @@ export default {
                     this.name = null
                     this.age = null
                     this.job = null
-                    console.log(response)
+                    this.$parent.$refs.indexComponent.getPeople()
                 })
         }
     }
