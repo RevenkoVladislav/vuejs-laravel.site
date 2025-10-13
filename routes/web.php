@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,4 +10,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/persons', App\Http\Controllers\PersonController::class);
+
+Route::get('/{page}', IndexController::class)->where('page', '.*');
+
