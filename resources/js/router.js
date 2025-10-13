@@ -9,6 +9,11 @@ const routes = [
         component: () => import('./components/Person/Index.vue'),
         name: 'person.index'
     },
+    {
+      path: '/people/create',
+      component: () => import('./components/Person/Create.vue'),
+      name: 'person.create'
+    },
 ];
 
 const router = new VueRouter({
