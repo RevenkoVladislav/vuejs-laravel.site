@@ -2,39 +2,30 @@
 export default {
     name: "Show",
 
-    data() {
-        return {
-            person: null
+    computed: {
+        person() {
+            return this.$store.getters.person
         }
     },
 
     mounted () {
-      this.getPerson()
+      this.$store.dispatch('getPerson', this.$route.params.id)
     },
-
-    methods: {
-        getPerson() {
-            axios.get(`/api/people/${this.$route.params.id}`)
-                .then(response => {
-                    this.person = response.data.data
-                })
-        },
-    }
 }
 </script>
 
 <template>
 <div v-if="person">
     <div>
-        Name: {{ this.person.name}}
+        Name: {{ person.name}}
     </div>
     <div>
-        Age: {{ this.person.age}}
+        Age: {{ person.age}}
     </div>
     <div>
-        Job: {{ this.person.job}}
+        Job: {{ person.job}}
     </div>
-        <router-link :to="{ name: 'person.edit', params: { id: this.person.id } }"
+        <router-link :to="{ name: 'person.edit', params: { id: person.id } }"
                      class="btn btn-success">Edit</router-link>
 </div>
 </template>
