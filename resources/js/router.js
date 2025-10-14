@@ -23,7 +23,7 @@ const routes = [
         path: '/people/:id',
         component: () => import('./components/Person/Show.vue'),
         name: 'person.show'
-    }
+    },
 ];
 
 const router = new VueRouter({

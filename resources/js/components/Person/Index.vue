@@ -19,6 +19,13 @@ export default {
                     this.people = response.data;
                 })
         },
+
+        deletePerson(id) {
+            axios.delete(`/api/people/${id}`)
+                .then(response => {
+                    this.getPeople();
+                })
+        },
     },
 }
 </script>
@@ -38,16 +45,21 @@ export default {
 
             <tbody>
             <tr v-for="person in people">
-                <td class="text-center">{{ person.name }}</td>
+                <td class="text-center">
+                    <router-link :to="{name: 'person.show', params: {id: person.id} }">
+                        {{ person.name }}
+                    </router-link>
+                </td>
                 <td class="text-center">{{ person.age }}</td>
                 <td class="text-center">{{ person.job }}</td>
                 <td class="text-center">
                     <router-link :to="{ name: 'person.edit', params: { id: person.id } }"
-                                 class="btn btn-success">Edit</router-link>
+                                 class="btn btn-success">Edit
+                    </router-link>
                 </td>
                 <td class="text-center">
-                    <router-link :to="{ name: 'person.edit', params: { id: person.id } }"
-                                 class="btn btn-danger">Delete</router-link>
+                    <a href="#" @click.prevent="deletePerson(person.id)"
+                       class="btn btn-outline-danger">Delete</a>
                 </td>
             </tr>
             </tbody>
