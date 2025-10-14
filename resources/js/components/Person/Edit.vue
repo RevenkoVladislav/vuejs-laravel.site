@@ -35,8 +35,14 @@ export default {
                         name: 'person.show', params: {id: this.$route.params.id}
                     })
                 })
+        },
+    },
+
+    computed: {
+        isDisabled() {
+            return this.name && this.age && this.job;
         }
-    }
+    },
 }
 </script>
 
@@ -52,7 +58,7 @@ export default {
             <input type="text" placeholder="job" v-model="job" class="form-control">
         </div>
         <div class="mb-3">
-            <input @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-success">
+            <input :disabled="!isDisabled" @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-success">
         </div>
     </div>
 </template>
