@@ -2,10 +2,6 @@
 export default {
     name: "Edit",
 
-    components: {
-
-    },
-
     data() {
         return {
             name: null,
