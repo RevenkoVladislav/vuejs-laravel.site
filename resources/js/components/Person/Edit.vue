@@ -23,7 +23,6 @@ export default {
         getPerson() {
             axios.get(`/api/people/${this.$route.params.id}`)
                 .then(response => {
-                    console.log(this.$route.params.id);
                     this.name = response.data.name;
                     this.age = response.data.age;
                     this.job = response.data.job
@@ -34,7 +33,7 @@ export default {
             axios.patch(`/api/people/${this.$route.params.id}`, {name: this.name, age: this.age, job: this.job})
                 .then(response => {
                     router.push({
-                        name: 'person.show'
+                        name: 'person.show', params: {id: this.$route.params.id}
                     })
                 })
         }
@@ -54,7 +53,7 @@ export default {
             <input type="text" placeholder="job" v-model="job" class="form-control">
         </div>
         <div class="mb-3">
-            <input @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-primary">
+            <input @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-success">
         </div>
     </div>
 </template>
