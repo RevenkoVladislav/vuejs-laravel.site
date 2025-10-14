@@ -11,6 +11,7 @@ Route::get('/user', function (Request $request) {
 Route::prefix('people')->name('people.')->group(function () {
     Route::get('/', Person\IndexController::class)->name('index');
     Route::post('/store', Person\StoreController::class)->name('store');
+    Route::get('/{person}', Person\ShowController::class)->name('show');
     Route::patch('/{person}', Person\UpdateController::class)->name('update');
     Route::delete('/{person}', Person\DeleteController::class)->name('delete');
 });
