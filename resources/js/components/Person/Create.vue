@@ -1,5 +1,4 @@
 <script>
-import router from '../../router'
 export default {
     name: "Create",
 
@@ -15,10 +14,16 @@ export default {
         store() {
             axios.post('/api/people/store', {name: this.name, age: this.age, job: this.job})
                 .then(response => {
-                    router.push({ name: 'person.index' });
+                    this.$router.push({ name: 'person.index' });
                 });
+        },
+    },
+
+    computed: {
+        isDisabled() {
+            return this.name && this.age && this.job;
         }
-    }
+    },
 }
 </script>
 
@@ -34,7 +39,7 @@ export default {
         <input type="text" placeholder="job" v-model="job" class="form-control">
     </div>
     <div class="mb-3">
-        <input @click.prevent="store" type="submit" value="Add" class="btn btn-primary">
+        <input :disabled="!isDisabled" @click.prevent="store" type="submit" value="Add" class="btn btn-primary">
     </div>
 </div>
 </template>

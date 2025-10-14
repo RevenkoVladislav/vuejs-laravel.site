@@ -1,10 +1,9 @@
 <script>
-import router from '../../router'
 export default {
     name: "Edit",
 
     components: {
-      router
+
     },
 
     data() {
@@ -23,16 +22,16 @@ export default {
         getPerson() {
             axios.get(`/api/people/${this.$route.params.id}`)
                 .then(response => {
-                    this.name = response.data.name;
-                    this.age = response.data.age;
-                    this.job = response.data.job
+                    this.name = response.data.data.name;
+                    this.age = response.data.data.age;
+                    this.job = response.data.data.job
                 })
         },
 
         updatePerson() {
             axios.patch(`/api/people/${this.$route.params.id}`, {name: this.name, age: this.age, job: this.job})
                 .then(response => {
-                    router.push({
+                    this.$router.push({
                         name: 'person.show', params: {id: this.$route.params.id}
                     })
                 })
