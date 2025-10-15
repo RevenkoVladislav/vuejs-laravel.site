@@ -19,11 +19,14 @@
 - Динамическая маршрутизация без перезагрузки страницы
 - Отделение логики состояния (Vuex) и отображения (компоненты)
 
-## Скриншоты:
-
 ## Цель проекта:
 
 Изучение взаимодействия Laravel API и Vue.js при создании одностраничных приложений
+
+## Скриншоты:
+<img width="1700" height="415" alt="people" src="https://github.com/user-attachments/assets/4cb5b706-4063-42cd-b360-0d0ab27ca577" />
+<img width="491" height="305" alt="add" src="https://github.com/user-attachments/assets/0490d95b-f8b0-4930-9f7f-9a25b0480c51" />
+<img width="469" height="279" alt="edit" src="https://github.com/user-attachments/assets/ebc97f92-9a15-47ea-af29-2be907310eba" />
 
 ## Установка:
 ```bash
