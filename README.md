@@ -39,7 +39,7 @@
 git clone https://github.com/RevenkoVladislav/vuejs-laravel.site.git
 #Установка зависимостей
 composer install
-#Установка npm завиимостей
+#Установка npm зависимостей
 npm install
 #сборка фронтенда
 npm run dev
